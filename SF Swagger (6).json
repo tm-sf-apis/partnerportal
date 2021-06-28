@@ -1,0 +1,86 @@
+{
+   "openapi": "3.0.1",
+   "components": {
+      "securitySchemes": {
+         "BearerAuth": {
+            "type": "http",
+            "scheme": "bearer"
+         }
+      },
+      "schemas": {
+         "Contact": {
+            "description": "Get Contacts from SF",
+            "properties": {
+               "positionId": {
+                  "description": "PositionId of Contact.",
+                  "type": "string"
+               },
+               "officeId": {
+                  "description": "office Id.",
+                  "type": "string"
+               },
+               "FirstName": {
+                  "description": "First name.",
+                  "type": "string"
+               },
+               "LastName": {
+                  "description": "Last name.",
+                  "type": "string"
+               }
+            },
+            "type": "object"
+         }
+      }
+   },
+   "info": {
+      "title": "Salesforce APIs for Partner Portal",
+      "description": "API to access data from Salesforce",
+      "version": "v1.0"
+   },
+   "servers": [
+      {
+         "url": "https://tmanalytics-dev-ed.my.salesforce.com/services/apexrest/v1/api",
+         "description": "Dev"
+      }
+   ],
+   "paths": {
+      "/Contact": {
+         "get": {
+            "security": [
+               {
+                  "BearerAuth": []
+               }
+            ],
+            "operationId": "getContacts",
+            "tags": [
+               "Contacts"
+            ],
+            "summary": "This operation gets all contacts",
+            "parameters": [],
+            "responses": {
+               "200": {
+                  "description": "successful operation",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "application/xml": {
+                        "schema": {
+                           "type": "integer"
+                        }
+                     }
+                  }
+               },
+               "403": {
+                  "description": "No permission to see all Contacts"
+               },
+               "404": {
+                  "description": "Contacts not found"
+               }
+            }
+         }
+      }
+   }
+}
